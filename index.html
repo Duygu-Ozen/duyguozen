@@ -3,67 +3,94 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Blog with Dynamic Sidebar</title>
+  <title>Duygu Özen Karatekin – Blog</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
   <style>
-    body {
+    :root {
+      --primary: #7f5af0;
+      --primary-hover: #9381ff;
+      --bg: #f9f9fc;
+      --sidebar-bg: #e0e7ff;
+      --text: #2e2e3a;
+      --white: #ffffff;
+    }
+
+    * {
+      box-sizing: border-box;
       margin: 0;
-      font-family: 'Segoe UI', sans-serif;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
       display: flex;
       min-height: 100vh;
-      background: #f4f4f4;
+      background-color: var(--bg);
+      color: var(--text);
     }
 
     .sidebar {
       width: 250px;
-      background-color: #222;
-      color: white;
-      padding: 30px 20px;
+      background-color: var(--sidebar-bg);
+      padding: 40px 25px;
     }
 
     .sidebar h2 {
-      margin-bottom: 30px;
-      font-size: 1.5rem;
+      font-size: 1.6rem;
+      margin-bottom: 35px;
+      color: var(--text);
     }
 
-    .sidebar a {
+    .nav-link {
       display: block;
-      color: #ddd;
+      margin-bottom: 18px;
       text-decoration: none;
-      margin: 15px 0;
-      transition: color 0.3s ease;
+      color: #555;
+      font-weight: 500;
+      padding: 10px 14px;
+      border-radius: 6px;
+      transition: background 0.3s, color 0.3s;
       cursor: pointer;
     }
 
-    .sidebar a:hover {
-      color: #fff;
+    .nav-link:hover,
+    .nav-link.active {
+      background-color: var(--primary-hover);
+      color: var(--white);
     }
 
     .main-content {
       flex: 1;
-      padding: 40px;
+      padding: 50px;
+      animation: fadeIn 0.4s ease;
     }
 
     .post {
-      background: white;
-      padding: 25px;
-      margin-bottom: 30px;
-      border-radius: 6px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+      background: var(--white);
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.05);
+      margin-bottom: 40px;
     }
 
     .post h2 {
-      margin-top: 0;
+      margin-bottom: 8px;
     }
 
     .post small {
-      color: #888;
+      color: #999;
+    }
+
+    .post p, .post ul {
+      margin-top: 15px;
+      line-height: 1.7;
     }
 
     footer {
       text-align: center;
-      margin-top: 40px;
       font-size: 0.9rem;
-      color: #777;
+      color: #aaa;
+      margin-top: 60px;
     }
 
     @media (max-width: 768px) {
@@ -73,12 +100,18 @@
 
       .sidebar {
         width: 100%;
+        height: auto;
         text-align: center;
       }
 
       .main-content {
-        padding: 20px;
+        padding: 30px 20px;
       }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
     }
   </style>
 </head>
@@ -86,66 +119,79 @@
 
   <div class="sidebar">
     <h2>Duygu Özen Karatekin</h2>
-    <a onclick="showHome()">Home</a>
-    <a onclick="showAbout()">About Me</a>
-    <a onclick="showProjects()">Projects</a>
-    <a onclick="showContact()">Contact</a>
+    <a class="nav-link active" onclick="loadSection('home', this)">Home</a>
+    <a class="nav-link" onclick="loadSection('about', this)">About Me</a>
+    <a class="nav-link" onclick="loadSection('projects', this)">Projects</a>
+    <a class="nav-link" onclick="loadSection('contact', this)">Contact</a>
   </div>
 
   <div class="main-content" id="main-content">
-    <!-- Default content -->
-    <div class="post">
-      <h2>Welcome to My Blog</h2>
-      <small>July 21, 2025</small>
-      <p>This is the home page of my personal blog. Click the links on the left to learn more about me!</p>
-    </div>
+    <!-- Initial content is loaded by JS -->
   </div>
 
   <script>
-    const mainContent = document.getElementById('main-content');
-
-    function showHome() {
-      mainContent.innerHTML = `
+    const content = {
+      home: `
         <div class="post">
           <h2>Welcome to My Blog</h2>
           <small>July 21, 2025</small>
-          <p>This is the home page of my personal blog. Click the links on the left to learn more about me!</p>
+          <p>Hi! This is the home page of my personal blog. I'm on a journey to learn web development and share what I discover along the way. Click the links on the left to get to know me.</p>
         </div>
-      `;
-    }
-
-    function showAbout() {
-      mainContent.innerHTML = `
+      `,
+      about: `
         <div class="post">
           <h2>About Me</h2>
           <small>Updated July 21, 2025</small>
-          <p>Hi! I'm a frontend developer passionate about building beautiful and responsive websites. I enjoy working with HTML, CSS, JavaScript, and React. I also love design and UX principles.</p>
+          <p>I'm Duygu, a frontend developer based in Turkey. I love building beautiful and functional websites using HTML, CSS, JavaScript, and React. I’m also passionate about UX/UI design and accessibility.</p>
         </div>
-      `;
-    }
-
-    function showProjects() {
-      mainContent.innerHTML = `
+      `,
+      projects: `
         <div class="post">
-          <h2>My Projects</h2>
+          <h2>Projects</h2>
           <small>Last updated July 20, 2025</small>
           <ul>
-            <li>Portfolio Website</li>
-            <li>To-do App (React)</li>
-            <li>Blog CMS Template</li>
+            <li><strong>Personal Portfolio</strong> — built with HTML, CSS, and JavaScript</li>
+            <li><strong>To-Do App</strong> — React + localStorage based task manager</li>
+            <li><strong>Blog Template</strong> — static blog deployed on Vercel</li>
           </ul>
         </div>
-      `;
+      `,
+   contact: `
+  <div class="post">
+    <h2>Contact Me</h2>
+    <p>
+      Want to collaborate or just say hi?  
+      Email me at <a href="mailto:duyguozn@gmail.com">duyguozn@gmail.com</a>.
+    </p>
+    <p>You can also find me on:</p>
+    <ul style="list-style: none; padding-left: 0;">
+      <li>
+        <a href="https://www.linkedin.com/in/duyguozn/" target="_blank" style="color: #0077b5; text-decoration: none;">
+          🔗 LinkedIn – /in/duyguozn
+        </a>
+      </li>
+      <li>
+        <a href="https://github.com/Duygu-Ozen" target="_blank" style="color: #333; text-decoration: none;">
+          💻 GitHub – @Duygu-Ozen
+        </a>
+      </li>
+    </ul>
+  </div>
+`,
+
+    };
+
+    const mainContent = document.getElementById('main-content');
+
+    function loadSection(section, el) {
+      mainContent.innerHTML = content[section];
+
+      document.querySelectorAll('.nav-link').forEach(link => link.classList.remove('active'));
+      el.classList.add('active');
     }
 
-    function showContact() {
-      mainContent.innerHTML = `
-        <div class="post">
-          <h2>Contact Me</h2>
-          <p>You can reach me at <a href="mailto:duyguozn@gmail.com">duyguozn@gmail.com</a></p>
-        </div>
-      `;
-    }
+    // Load Home on page load
+    window.onload = () => loadSection('home', document.querySelector('.nav-link.active'));
   </script>
 
 </body>
