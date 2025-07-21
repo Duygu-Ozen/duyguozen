@@ -2,34 +2,136 @@
 <html lang="tr">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Duygu Özen Karatekin - Blog</title>
-  <link rel="stylesheet" href="style.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Duygu Özen - Kişisel Web Sayfası</title>
+  <style>
+    /* Temel Reset */
+    * {
+      margin: 0; padding: 0; box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      color: #222;
+    }
+    body {
+      background: #f9f9f9;
+      line-height: 1.6;
+      display: flex;
+      justify-content: center;
+      padding: 20px;
+    }
+    .container {
+      max-width: 900px;
+      width: 100%;
+      background: white;
+      padding: 40px 50px;
+      box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+      border-radius: 10px;
+    }
+    header {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+    header h1 {
+      font-size: 2.8rem;
+      margin-bottom: 10px;
+      font-weight: 700;
+    }
+    header p {
+      font-size: 1.2rem;
+      color: #555;
+    }
+    nav ul {
+      list-style: none;
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      margin-bottom: 50px;
+    }
+    nav a {
+      text-decoration: none;
+      font-weight: 600;
+      color: #333;
+      padding: 6px 12px;
+      border-radius: 5px;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+    nav a:hover {
+      background-color: #0070f3;
+      color: white;
+    }
+    section {
+      margin-bottom: 50px;
+    }
+    section h2 {
+      font-size: 2rem;
+      margin-bottom: 15px;
+      border-bottom: 2px solid #0070f3;
+      display: inline-block;
+      padding-bottom: 4px;
+    }
+    article h3 {
+      font-size: 1.5rem;
+      margin-bottom: 8px;
+      color: #222;
+    }
+    article p {
+      color: #444;
+      font-size: 1rem;
+      line-height: 1.5;
+    }
+    footer {
+      text-align: center;
+      font-size: 0.9rem;
+      color: #777;
+      padding-top: 20px;
+      border-top: 1px solid #ddd;
+    }
+
+    /* Responsive */
+    @media(max-width: 600px) {
+      .container {
+        padding: 20px 25px;
+      }
+      nav ul {
+        flex-direction: column;
+        gap: 15px;
+      }
+    }
+  </style>
 </head>
 <body>
-  <header>
-    <h1>Duygu Özen Karatekin</h1>
-    <p class="tagline">Kelimelerle dans eden bir zihin...</p>
-  </header>
+  <div class="container">
+    <header>
+      <h1>Duygu Özen</h1>
+      <p>Frontend Geliştirici Adayı</p>
+    </header>
 
-  <section class="about">
-    <h2>Hakkımda</h2>
-    <p>Merhaba! Ben Duygu. Yazmayı, düşünmeyi ve paylaşmayı seven biriyim. Bu blogda kendi dünyamdan kesitleri, fikirlerimi ve ilham aldıklarımı paylaşıyorum.</p>
-  </section>
+    <nav>
+      <ul>
+        <li><a href="#hakkimda">Hakkımda</a></li>
+        <li><a href="#projeler">Projeler</a></li>
+        <li><a href="#iletisim">İletişim</a></li>
+      </ul>
+    </nav>
 
-  <main class="blog-posts">
-    <article class="post">
-      <h3>İlk Blog Yazım</h3>
-      <p class="date">21 Temmuz 2025</p>
-      <p>Merhaba dünya! Bu benim ilk blog yazım. Burada düşüncelerimi özgürce paylaşacağım. Takipte kalın!</p>
-    </article>
+    <main>
+      <section id="hakkimda">
+        <h2>Hakkımda</h2>
+        <p>Web geliştirme dünyasına ilgi duyuyorum. HTML, CSS ve JavaScript öğreniyorum. Modern ve kullanıcı dostu arayüzler tasarlamayı seviyorum.</p>
+      </section>
 
-    <!-- Yeni yazılar buraya eklenebilir -->
-    <!-- <article class="post">...</article> -->
-  </main>
+      <section id="projeler">
+        <h2>Projeler</h2>
+        <article>
+          <h3>Kişisel Web Sayfam</h3>
+          <p>Bu proje HTML5 ve CSS ile yapılmış, temiz ve sade bir portföy örneğidir.</p>
+        </article>
+        <!-- Daha fazla proje buraya eklenebilir -->
+      </section>
+    </main>
 
-  <footer>
-    <p>&copy; 2025 Duygu Özen Karatekin | Tüm hakları saklıdır.</p>
-  </footer>
+    <footer id="iletisim">
+      <p>İletişim: <a href="mailto:duygu@example.com">duygu@example.com</a></p>
+    </footer>
+  </div>
 </body>
 </html>
